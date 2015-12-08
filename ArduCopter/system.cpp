@@ -186,9 +186,10 @@ void Copter::init_ardupilot()
 
     // Do GPS init
     gps.init(&DataFlash, serial_manager);
-
+/*
     if(g.compass_enabled)
         init_compass();
+*/
 
 #if OPTFLOW == ENABLED
     // make optflow available to AHRS
@@ -316,7 +317,8 @@ bool Copter::calibrate_gyros()
         return true;
     }
 
-    return false;
+//    return false;
+    return true;
 }
 
 // position_ok - returns true if the horizontal absolute position is ok and home position is set

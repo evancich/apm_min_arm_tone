@@ -19,6 +19,8 @@
   constructor for main Copter class
  */
 
+bool Copter::stablize = false;
+
 const AP_HAL::HAL& hal = AP_HAL::get_HAL();
 
 Copter::Copter(void) :

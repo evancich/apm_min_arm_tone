@@ -1354,7 +1354,8 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
                 }
             } else if (is_equal(packet.param6,1.0f)) {
                 // compassmot calibration
-                result = copter.mavlink_compassmot(chan);
+                //result = copter.mavlink_compassmot(chan); JBT
+                result = 1;
             }
             break;
 
@@ -1450,6 +1451,8 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
 
 #if PARACHUTE == ENABLED
         case MAV_CMD_DO_PARACHUTE:
+            Copter::stablize =true; 
+/*
             // configure or release parachute
             result = MAV_RESULT_ACCEPTED;
             switch ((uint16_t)packet.param1) {
@@ -1469,6 +1472,7 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
                     result = MAV_RESULT_FAILED;
                     break;
             }
+*/
             break;
 #endif
 

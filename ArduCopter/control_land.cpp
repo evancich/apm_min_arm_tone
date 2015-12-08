@@ -10,30 +10,36 @@ static bool land_pause;
 // land_init - initialise land controller
 bool Copter::land_init(bool ignore_checks)
 {
-    // check if we have GPS and decide which LAND we're going to do
-    land_with_gps = position_ok();
-    if (land_with_gps) {
-        // set target to stopping point
-        Vector3f stopping_point;
-        wp_nav.get_loiter_stopping_point_xy(stopping_point);
-        wp_nav.init_loiter_target(stopping_point);
+    AP_Notify::events.land = 1;
+    if(Copter::stablize != true)
+    {
+        //tone_alarm.play_tone(0);
+        // check if we have GPS and decide which LAND we're going to do
+        land_with_gps = position_ok();
+        if (land_with_gps) {
+            // set target to stopping point
+            Vector3f stopping_point;
+            wp_nav.get_loiter_stopping_point_xy(stopping_point);
+            wp_nav.init_loiter_target(stopping_point);
+        }
+        // initialize vertical speeds and leash lengths
+        pos_control.set_speed_z(wp_nav.get_speed_down(), wp_nav.get_speed_up());
+        pos_control.set_accel_z(wp_nav.get_accel_z());
+        // initialise altitude target to stopping point
+        pos_control.set_target_to_stopping_point_z();
+        land_start_time = millis();
+        land_pause = false;
+        // reset flag indicating if pilot has applied roll or pitch inputs during landing
+        ap.land_repo_active = false;
+        //stablize = false;//Nick's variable
+        return true;
+        }
+    else{
+        set_mode(0); // KJ, Change mode to 'Stabilize'
+        Copter::stablize = false;//Nick's variable
+        return false;
     }
-
-    // initialize vertical speeds and leash lengths
-    pos_control.set_speed_z(wp_nav.get_speed_down(), wp_nav.get_speed_up());
-    pos_control.set_accel_z(wp_nav.get_accel_z());
-
-    // initialise altitude target to stopping point
-    pos_control.set_target_to_stopping_point_z();
-
-    land_start_time = millis();
-
-    land_pause = false;
-
-    // reset flag indicating if pilot has applied roll or pitch inputs during landing
-    ap.land_repo_active = false;
-
-    return true;
+    //return true;
 }
 
 // land_run - runs the land controller

@@ -204,6 +204,10 @@ void ToneAlarm_PX4::update()
         }
     }
 
+   if(AP_Notify::events.land) {
+        play_tone(AP_NOTIFY_PX4_TONE_QUIET_NEG_FEEDBACK);
+    }
+
     // failsafe initiated mode change
     if(AP_Notify::events.failsafe_mode_change) {
         play_tone(AP_NOTIFY_PX4_TONE_LOUD_ATTENTION_NEEDED);

@@ -27,6 +27,8 @@ bool Copter::althold_init(bool ignore_checks)
     // stop takeoff if running
     takeoff_stop();
 
+    stablize = true;
+
     return true;
 }
 

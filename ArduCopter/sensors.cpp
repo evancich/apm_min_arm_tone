@@ -20,8 +20,9 @@ void Copter::read_barometer(void)
     if (should_log(MASK_LOG_IMU)) {
         Log_Write_Baro();
     }
-    baro_alt = barometer.get_altitude() * 100.0f;
-    baro_climbrate = barometer.get_climb_rate() * 100.0f;
+    baro_alt = 100.0f; //barometer.get_altitude() * 100.0f; JBT
+    baro_climbrate = 100.0f; // barometer.get_climb_rate() * 100.0f; JBT
+
 
     motors.set_air_density_ratio(barometer.get_air_density_ratio());
 }
@@ -85,6 +86,7 @@ void Copter::rpm_update(void)
 // initialise compass
 void Copter::init_compass()
 {
+/*
     if (!compass.init() || !compass.read()) {
         // make sure we don't pass a broken compass to DCM
         cliSerial->println("COMPASS INIT ERROR");
@@ -92,6 +94,7 @@ void Copter::init_compass()
         return;
     }
     ahrs.set_compass(&compass);
+*/
 }
 
 // initialise optical flow sensor

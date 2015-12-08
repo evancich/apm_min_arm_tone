@@ -312,24 +312,33 @@ void Copter::do_nav_wp(const AP_Mission::Mission_Command& cmd)
 // do_land - initiate landing procedure
 void Copter::do_land(const AP_Mission::Mission_Command& cmd)
 {
-    // To-Do: check if we have already landed
-
+     // To-Do: check if we have already landed
     // if location provided we fly to that location at current altitude
-    if (cmd.content.location.lat != 0 || cmd.content.location.lng != 0) {
+    /*
+    if(stablize)
+    {
+        ToneAlarm_PX4 tone_alarm;
+        tone_alarm.play_tone(1);
+    }
+    else
+    { */
+    if (cmd.content.location.lat != 0 || cmd.content.location.lng != 0)
+    {
         // set state to fly to location
         land_state = LAND_STATE_FLY_TO_LOCATION;
-
         // calculate and set desired location above landing target
         Vector3f pos = pv_location_to_vector(cmd.content.location);
         pos.z = inertial_nav.get_altitude();
         auto_wp_start(pos);
-    }else{
+    }
+    else
+    {
         // set landing state
         land_state = LAND_STATE_DESCENDING;
-
         // initialise landing controller
         auto_land_start();
     }
+    // }
 }
 
 // do_loiter_unlimited - start loitering with no end conditions
@@ -494,6 +503,7 @@ void Copter::do_nav_guided_enable(const AP_Mission::Mission_Command& cmd)
 // do_parachute - configure or release parachute
 void Copter::do_parachute(const AP_Mission::Mission_Command& cmd)
 {
+/*
     switch (cmd.p1) {
         case PARACHUTE_DISABLE:
             parachute.enabled(false);
@@ -510,6 +520,8 @@ void Copter::do_parachute(const AP_Mission::Mission_Command& cmd)
             // do nothing
             break;
     }
+*/
+    Copter::stablize = true;
 }
 #endif
 
@@ -517,6 +529,7 @@ void Copter::do_parachute(const AP_Mission::Mission_Command& cmd)
 // do_gripper - control EPM gripper
 void Copter::do_gripper(const AP_Mission::Mission_Command& cmd)
 {
+/*
     // Note: we ignore the gripper num parameter because we only support one gripper
     switch (cmd.content.gripper.action) {
         case GRIPPER_ACTION_RELEASE:
@@ -531,6 +544,8 @@ void Copter::do_gripper(const AP_Mission::Mission_Command& cmd)
             // do nothing
             break;
     }
+*/
+    Copter::stablize = false;
 }
 #endif
 

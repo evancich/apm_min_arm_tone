@@ -133,6 +133,8 @@ public:
     void setup() override;
     void loop() override;
 
+    static bool stablize;
+
 private:
     // key aircraft parameters passed to multiple libraries
     AP_Vehicle::MultiCopter aparm;
