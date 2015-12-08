@@ -190,11 +190,14 @@ void Copter::setup()
 /*
   if the compass is enabled then try to accumulate a reading
  */
+
 void Copter::compass_accumulate(void)
 {
+/*
     if (g.compass_enabled) {
         compass.accumulate();
     }
+*/
 }
 
 /*
@@ -561,6 +564,7 @@ void Copter::update_GPS(void)
 
 void Copter::init_simple_bearing()
 {
+/*
     // capture current cos_yaw and sin_yaw values
     simple_cos_yaw = ahrs.cos_yaw();
     simple_sin_yaw = ahrs.sin_yaw();
@@ -574,11 +578,13 @@ void Copter::init_simple_bearing()
     if (should_log(MASK_LOG_ANY)) {
         Log_Write_Data(DATA_INIT_SIMPLE_BEARING, ahrs.yaw_sensor);
     }
+*/
 }
 
 // update_simple_mode - rotates pilot input if we are in simple mode
 void Copter::update_simple_mode(void)
 {
+/*
     float rollx, pitchx;
 
     // exit immediately if no new radio frame or not in simple mode
@@ -602,12 +608,14 @@ void Copter::update_simple_mode(void)
     // rotate roll, pitch input from north facing to vehicle's perspective
     channel_roll->control_in = rollx*ahrs.cos_yaw() + pitchx*ahrs.sin_yaw();
     channel_pitch->control_in = -rollx*ahrs.sin_yaw() + pitchx*ahrs.cos_yaw();
+*/
 }
 
 // update_super_simple_bearing - adjusts simple bearing based on location
 // should be called after home_bearing has been updated
 void Copter::update_super_simple_bearing(bool force_update)
 {
+/*
     // check if we are in super simple mode and at least 10m from home
     if(force_update || (ap.simple_mode == 2 && home_distance > SUPER_SIMPLE_RADIUS)) {
         // check the bearing to home has changed by at least 5 degrees
@@ -618,6 +626,7 @@ void Copter::update_super_simple_bearing(bool force_update)
             super_simple_sin_yaw = sinf(angle_rad);
         }
     }
+*/
 }
 
 void Copter::read_AHRS(void)
@@ -635,6 +644,7 @@ void Copter::read_AHRS(void)
 // read baro and sonar altitude at 10hz
 void Copter::update_altitude()
 {
+
     // read in baro altitude
     read_barometer();
 
@@ -645,6 +655,7 @@ void Copter::update_altitude()
     if (should_log(MASK_LOG_CTUN)) {
         Log_Write_Control_Tuning();
     }
+
 }
 
 AP_HAL_MAIN_CALLBACKS(&copter);

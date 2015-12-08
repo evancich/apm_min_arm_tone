@@ -286,6 +286,8 @@ void Copter::init_ardupilot()
 
     // flag that initialisation has completed
     ap.initialised = true;
+
+    motors.armed();
 }
 
 
@@ -308,6 +310,7 @@ void Copter::startup_INS_ground()
 // calibrate gyros - returns true if succesfully calibrated
 bool Copter::calibrate_gyros()
 {
+
     // gyro offset calibration
     copter.ins.init_gyro();
 
@@ -318,6 +321,7 @@ bool Copter::calibrate_gyros()
     }
 
 //    return false;
+
     return true;
 }
 

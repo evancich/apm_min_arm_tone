@@ -339,6 +339,7 @@ void AP_Baro::init(void)
  */
 void AP_Baro::update(void)
 {
+
     if (!_hil_mode) {
         for (uint8_t i=0; i<_num_drivers; i++) {
             drivers[i]->update();
@@ -351,7 +352,7 @@ void AP_Baro::update(void)
     for (uint8_t i=0; i<_num_sensors; i++) {
         sensors[i].healthy = (now - sensors[i].last_update_ms < 500) && !is_zero(sensors[i].pressure);
     }
-
+/*
     for (uint8_t i=0; i<_num_sensors; i++) {
         if (sensors[i].healthy) {
             // update altitude calculation
@@ -366,7 +367,7 @@ void AP_Baro::update(void)
             }
         }
     }
-
+*/
     // ensure the climb rate filter is updated
     if (healthy()) {
         _climb_rate_filter.update(get_altitude(), get_last_update());
@@ -384,6 +385,7 @@ void AP_Baro::update(void)
             }
         }
     }
+
 }
 
 /*

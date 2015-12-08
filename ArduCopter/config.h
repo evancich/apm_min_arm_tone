@@ -56,7 +56,7 @@
  #define CONFIG_SONAR DISABLED
 #endif
 
-#define MAGNETOMETER ENABLED
+#define MAGNETOMETER DISABLED //ENABLED
 
 // run at 400Hz on all systems
 # define MAIN_LOOP_RATE    400
@@ -263,7 +263,7 @@
 //////////////////////////////////////////////////////////////////////////////
 //  MAGNETOMETER
 #ifndef MAGNETOMETER
- # define MAGNETOMETER                   ENABLED
+ # define MAGNETOMETER                   DISABLED//ENABLED
 #endif
 
 // expected magnetic field strength.  pre-arm checks will fail if 50% higher or lower than this value

@@ -611,6 +611,7 @@ Compass::get_declination() const
 float
 Compass::calculate_heading(const Matrix3f &dcm_matrix) const
 {
+
     float cos_pitch_sq = 1.0f-(dcm_matrix.c.x*dcm_matrix.c.x);
 
     // Tilt compensated magnetic field Y component:
@@ -636,6 +637,8 @@ Compass::calculate_heading(const Matrix3f &dcm_matrix) const
     }
 
     return heading;
+
+    //return 42.42;
 }
 
 /// Returns True if the compasses have been configured (i.e. offsets saved)

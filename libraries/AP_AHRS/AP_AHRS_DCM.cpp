@@ -62,6 +62,7 @@ AP_AHRS_DCM::update(void)
     // ask the IMU how much time this sensor reading represents
     delta_t = _ins.get_delta_time();
 
+
     // if the update call took more than 0.2 seconds then discard it,
     // otherwise we may move too far. This happens when arming motors
     // in ArduCopter

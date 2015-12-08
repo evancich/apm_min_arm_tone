@@ -16,12 +16,12 @@ void Copter::init_barometer(bool full_calibration)
 // return barometric altitude in centimeters
 void Copter::read_barometer(void)
 {
-    barometer.update();
+    //barometer.update();
     if (should_log(MASK_LOG_IMU)) {
         Log_Write_Baro();
     }
-    baro_alt = 100.0f; //barometer.get_altitude() * 100.0f; JBT
-    baro_climbrate = 100.0f; // barometer.get_climb_rate() * 100.0f; JBT
+    baro_alt = 0.0f; //barometer.get_altitude() * 100.0f; JBT
+    baro_climbrate = 0.0f; // barometer.get_climb_rate() * 100.0f; JBT
 
 
     motors.set_air_density_ratio(barometer.get_air_density_ratio());

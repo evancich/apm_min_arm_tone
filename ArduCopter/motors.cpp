@@ -131,14 +131,14 @@ bool Copter::init_arm_motors(bool arming_from_gcs)
         return false;
     }
     in_arm_motors = true;
-
+/*
     // run pre-arm-checks and display failures
     if(!pre_arm_checks(true) || !arm_checks(true, arming_from_gcs)) {
         AP_Notify::events.arming_failed = true;
         in_arm_motors = false;
         return false;
     }
-
+*/
     // disable cpu failsafe because initialising everything takes a while
     failsafe_disable();
 
